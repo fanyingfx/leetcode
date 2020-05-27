@@ -17,8 +17,8 @@ class Solution:
                 continue
             d ={}
             for b in nums[index+1:]:
-                if b not in d:
-                    d[-a-b]=1
+                if -a-b not in d:
+                    d[b]=1
                 else:
                     res.add((a,-a-b,b))
         return list(map(list,res))
