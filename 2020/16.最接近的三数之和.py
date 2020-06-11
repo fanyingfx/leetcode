@@ -8,27 +8,30 @@
 from typing import List
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        if len(nums)< 3:
-            return None
+        if len(nums)<3:
+            return -1
         nums.sort()
         res = nums[0]+nums[1]+nums[2]
-        for ind in range(1,len(nums)-1):
-            start_index,end_index = 0,len(nums)-1
-            while start_index <ind and end_index>ind:
-                curr_sum=sum((nums[start_index],nums[ind],nums[end_index]))
-                if curr_sum > target:
-                    end_index-=1
-                elif curr_sum < target:
-                    start_index += 1
+        i = 1
+        while i < len(nums):
+            start,end=0,len(nums)-1
+            while start< i and i < end:
+                threeSum=nums[start]+nums[i]+nums[end]
+                # print(start,end,i,threeSum)
+                if abs(threeSum-target) < abs(res-target):
+                    res=threeSum
+                if threeSum > target:
+                    end -=1
+                elif threeSum < target:
+                    start +=1
                 else:
-                    return target
-                if abs(curr_sum-target)<abs(res-target):
-                    res = curr_sum
+                    return threeSum
+            i+=1
         return res
 
-sln = Solution()
-
+sln=Solution()
 print(sln.threeSumClosest([-1,2,1,-4],1))
+
 
 # @lc code=end
 
