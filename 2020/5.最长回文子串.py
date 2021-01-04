@@ -3,74 +3,54 @@
 #
 # [5] 最长回文子串
 #
-# https://leetcode-cn.com/problems/longest-palindromic-substring/description/
-#
-# algorithms
-# Medium (27.98%)
-# Likes:    1845
-# Dislikes: 0
-# Total Accepted:    201.7K
-# Total Submissions: 699.2K
-# Testcase Example:  '"babad"'
-#
-# 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
-# 
-# 示例 1：
-# 
-# 输入: "babad"
-# 输出: "bab"
-# 注意: "aba" 也是一个有效答案。
-# 
-# 
-# 示例 2：
-# 
-# 输入: "cbbd"
-# 输出: "bb"
-# 
-# 
-#
 
 # @lc code=start
 class Solution:
     def longestPalindrome(self, s: str) -> str:
-        if len(s) == 0 or len(s)==1:
+        if not s:
             return s
-        if len(s)==2:
-            if s[0]==s[1]:
-                return s
-            else :return s[0]
+        def expand(i):
+            curr1 = s[i]
+            left = i
+            right = i
 
-        max_length = (0,0,1)
+            def find(center,left,right):
+                curr= center
+                while True:
+                    left -=1
+                    right +=1
+                    if left < 0 or right > len(s)-1:
+                        break
+                    if s[left]==s[right]:
+                        curr=s[left]+curr+s[right]
+                    else:break
+                return curr
+
+            curr1=find(curr1,left,right) 
+
+            left,right=i,i
+            if s[i+1]==s[i]:
+                curr2 = s[i]+s[i+1]
+                right += 1
+                curr2=find(curr2,left,right)
+                
+                if len(curr2)>len(curr1):
+                    return curr2
+            return curr1
+            
+                
+        max_palindrome = s[0]
 
         for i in range(len(s)-1):
-            left,right =i,i
-            while left > 0 and right < len(s) -1:
-                if s[left-1] ==s[right+1]:
-                    left = left -1
-                    right = right +1
-                    if right -left+1 > max_length[-1]:
-                        max_length = (left,right,right-left+1)
-                else: break
-            
-            if i+1 < len(s)  and s[i]==s[i+1]:
-                left,right =i,i+1
-                if right -left+1 > max_length[-1]:
-                    max_length = (left,right,right-left+1)
-                while left > 0 and right < len(s) -1:
-                    if s[left-1] ==s[right+1]:
-                        left = left -1
-                        right = right +1
-                        if right -left +1> max_length[-1]:
-                            max_length = (left,right,right-left+1)
-                    else:break
-        print(max_length)
-        left,right,_ = max_length
-        return s[left:right+1]
+            cu = expand(i)
+            if len(cu) > len(max_palindrome):
+                max_palindrome=cu
+        return max_palindrome
 
-sln = Solution()
+sln=Solution()
+print(sln.longestPalindrome('abbba'))
 
-s1 ='abb'
-print(sln.longestPalindrome(s1))
+
 
 
 
