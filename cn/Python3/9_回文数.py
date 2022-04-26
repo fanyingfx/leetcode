@@ -8,3 +8,4 @@ from cn.Python3.mod.preImport import *
 # @test(10)=false
 class Solution:
     def isPalindrome(self, x: int) -> bool:
+        return True
