@@ -46,3 +46,4 @@ node_modules/algm/src/tree.ts
 node_modules/algm/src/treeNode.ts
 node_modules/algm/src/unionFind.ts
 cn/workspace.code-workspace
+cn/leetcode.code-workspace
