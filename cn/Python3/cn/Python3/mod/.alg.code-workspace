@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../.."
+		},
+		{
+			"path": "../../../../../../Code/algorithm"
+		}
+	],
+	"settings": {
+		"algorithm.baseDir": "/home/fan/.alg/cn/Python3",
+		"workbench.editor.wrapTabs": true
+	}
+}
